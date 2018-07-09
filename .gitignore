@@ -34,6 +34,7 @@ htmlcov/
 nosetests.xml
 coverage.xml
 
+
 # Translations
 *.mo
 
@@ -52,3 +53,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+
+.idea/
+.vscode/
+venv/
