@@ -66,5 +66,6 @@ class Camera(BaseCamera):
         """Background thread that grabs frame from the camera."""
         with picamera.PiCamera() as camera:
             camera.resolution = self.resolution
+            camera.hflip=True
             camera.capture_sequence(self._streams(), 'jpeg', use_video_port=True,
                                     quality=self.quality)
