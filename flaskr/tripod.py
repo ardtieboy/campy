@@ -25,10 +25,10 @@ class Tripod(object):
         if (-80 < self.vertical):
             self.vertical = self.vertical - self.step_size
         print('moving up ' + str(self.vertical))
-        pantilthat.pan(self.vertical)
+        pantilthat.tilt(self.vertical)
 
     def down(self):
         if (self.vertical < 80):
             self.vertical = self.vertical + self.step_size
         print('moving down ' + str(self.vertical))
-        pantilthat.pan(self.vertical)
+        pantilthat.tilt(self.vertical)
