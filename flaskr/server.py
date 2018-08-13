@@ -44,10 +44,6 @@ def run_app(fps, camera, debug, initdb):
     from flaskr import auth
     app.register_blueprint(auth.bp)
 
-    @app.route('/hello')
-    def hello():
-        return 'hello'
-
     @app.route('/')
     @login_required
     def index():
