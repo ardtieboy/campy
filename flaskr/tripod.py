@@ -1,3 +1,4 @@
+import pantilthat
 
 class Tripod(object):
 
@@ -10,18 +11,22 @@ class Tripod(object):
         if (-85 < self.horizontal):
             self.horizontal = self.horizontal - self.step_size
         print('moving left ' + str(self.horizontal))
+        pantilthat.pan(self.horizontal)
 
     def right(self):
         if (self.horizontal < 85):
             self.horizontal = self.horizontal + self.step_size
         print('moving right ' + str(self.horizontal))
+        pantilthat.pan(self.horizontal)
 
     def up(self):
         if (-85 < self.vertical):
             self.vertical = self.vertical - self.step_size
         print('moving up ' + str(self.vertical))
+        pantilthat.pan(self.vertical)
 
     def down(self):
         if (self.vertical < 85):
             self.vertical = self.vertical + self.step_size
         print('moving down ' + str(self.vertical))
+        pantilthat.pan(self.vertical)
