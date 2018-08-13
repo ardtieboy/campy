@@ -8,8 +8,7 @@ from .auth import login_required
 @click.option('--fps', '-f', default=15, help='Refresh frame rate.')
 @click.option('--camera', '-c', default='fake', help='Camera driver to use. Valid options are "fake", "pi". (default is "fake")')
 @click.option('--debug/--no-debug', '-d/', default=False, help='Enable or disable debug mode (default is disabled).')
-@click.option('--initdb', '-i', default=False, help='Initialize the auth db')
-def run_app(fps, camera, debug, initdb):
+def run_app(fps, camera, debug):
     """Campy is a webcam server accessible through a REST API."""
     app = Flask(__name__, instance_relative_config=True)
     app.config['CAMERA'] = camera
@@ -34,11 +33,6 @@ def run_app(fps, camera, debug, initdb):
     # register the database commands
     from flaskr import db
     app.teardown_appcontext(db.close_db)
-
-    if initdb:
-        with app.app_context():
-            db.init_db()
-            click.echo('Initialized the database.')
 
     # apply the blueprints to the flaskr
     from flaskr import auth
