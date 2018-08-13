@@ -15,4 +15,20 @@
 
 {% block content %}
 <img src="{{ url_for('api.get_stream', camera=camera) }}">
+<button onclick="move('left')">left</button>
+<button onclick="move('right')">right</button>
+<button onclick="move('up')">up</button>
+<button onclick="move('down')">down</button>
+
+<script>
+  function move(position) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", '/tripod/' + position, false ); // false for synchronous request
+    xmlHttp.send( null );
+    console.log(xmlHttp.responseText);
+  }
+</script>
 {% endblock %}
+
+
+

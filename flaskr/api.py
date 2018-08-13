@@ -1,9 +1,10 @@
 import time
-from flask import Blueprint, Response, url_for, jsonify, current_app
+from flask import Blueprint, Response, url_for, jsonify, current_app, redirect
 from .cameras import get_camera_list, get_camera
+from .tripod import tripod
 
 api = Blueprint('api', __name__)
-
+cur_tripod = tripod.Tripod()
 
 @api.route('/cameras/')
 def get_cameras():
@@ -33,3 +34,17 @@ def set_configuration(camera):
     """Apply configuration changes to the camera."""
     get_camera(camera).set_configuration(request.json)
     return jsonify({})
+
+@api.route('/tripod/<position>')
+def set_tripod(position):
+    if position == 'left':
+        cur_tripod.left()
+    elif position == 'right':
+        cur_tripod.right()
+    elif position == 'up':
+        cur_tripod.up()
+    elif position == 'down':
+        cur_tripod.down()
+    else:
+        print('something went wrong')
+    return 'OK'
