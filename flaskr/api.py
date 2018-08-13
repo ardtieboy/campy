@@ -1,7 +1,7 @@
-import time
-from flask import Blueprint, Response, url_for, jsonify, current_app, redirect
+from flask import Blueprint, Response, url_for, jsonify, current_app
+
+from flaskr import tripod
 from .cameras import get_camera_list, get_camera
-from .tripod import tripod
 
 api = Blueprint('api', __name__)
 cur_tripod = tripod.Tripod()
