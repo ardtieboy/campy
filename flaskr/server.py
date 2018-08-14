@@ -7,11 +7,13 @@ from .auth import login_required
 @click.command()
 @click.option('--fps', '-f', default=15, help='Refresh frame rate.')
 @click.option('--camera', '-c', default='fake', help='Camera driver to use. Valid options are "fake", "pi". (default is "fake")')
+@click.option('--tripod', '-t', default='fake', help='Triod driver to use. Valid options are "fake", "pi". (default is "fake")')
 @click.option('--debug/--no-debug', '-d/', default=False, help='Enable or disable debug mode (default is disabled).')
-def run_app(fps, camera, debug):
+def run_app(fps, camera, tripod, debug):
     """Campy is a webcam server accessible through a REST API."""
     app = Flask(__name__, instance_relative_config=True)
     app.config['CAMERA'] = camera
+    app.config['TRIPOD'] = tripod
     app.config['FPS'] = fps
     app.register_blueprint(api)
 
@@ -37,6 +39,9 @@ def run_app(fps, camera, debug):
     # apply the blueprints to the flaskr
     from flaskr import auth
     app.register_blueprint(auth.bp)
+
+    from .tripods import set_tripod
+    set_tripod(app.config['TRIPOD'])
 
     @app.route('/')
     @login_required

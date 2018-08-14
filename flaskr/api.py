@@ -1,10 +1,9 @@
 from flask import Blueprint, Response, url_for, jsonify, current_app
 
-from flaskr import tripod
 from .cameras import get_camera_list, get_camera
+from .tripods import get_tripod
 
 api = Blueprint('api', __name__)
-cur_tripod = tripod.Tripod()
 
 @api.route('/cameras/')
 def get_cameras():
@@ -37,6 +36,7 @@ def set_configuration(camera):
 
 @api.route('/tripod/<position>')
 def set_tripod(position):
+    cur_tripod = get_tripod()
     if position == 'left':
         cur_tripod.left()
     elif position == 'right':
