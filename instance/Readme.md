@@ -1,14 +1,22 @@
-sqlite3 flaskr.sqlite < schema.sql
+# Sqlite user database
 
-sqlite3 flaskr.sqlite
+create the database with schema
 
-select * from user;
+    sqlite3 flaskr.sqlite < schema.sql
 
-insert into user(username, password) values ('Ard','hashed_password')
+log on onto the db
 
-Where hashed_password is the outcome from:
+    sqlite3 flaskr.sqlite
+
+check if the db is accessible and empty
+
+    select * from user;
+
+insert users
+
+    insert into user(username, password) values ('Ard','hashed_password')
+
+Where hashed_password is the outcome of this python snipped:
 
     from werkzeug.security import check_password_hash, generate_password_hash
     print(generate_password_hash('unhashed_password')
-
-Add users this way.
