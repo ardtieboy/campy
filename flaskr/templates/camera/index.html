@@ -1,33 +1,35 @@
-<html>
-  <head>
-    <title>campy</title>
-  </head>
-  <body>
-  </body>
-</html>
-
-
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Live view{% endblock %}</h1>
+    <div class="container">
+        <h1>{% block title %}Live view{% endblock %}</h1>
+     </div>
 {% endblock %}
 
 {% block content %}
-<img src="{{ url_for('api.get_stream', camera=camera) }}">
-<button onclick="move('left')">left</button>
-<button onclick="move('right')">right</button>
-<button onclick="move('up')">up</button>
-<button onclick="move('down')">down</button>
 
-<script>
-  function move(position, tripod) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", '/tripod/' + position, false ); // false for synchronous request
-    xmlHttp.send( null );
-    console.log(xmlHttp.responseText);
-  }
-</script>
+        <div class="container">
+            <img src="{{ url_for('api.get_stream', camera=camera) }}">
+            <div class="row">
+                <div class="col-sm-3">
+                  <div id="up_button"></div>
+                </div>
+                <div class="col-sm-3">
+                  <div id="down_button"></div>
+                </div>
+                <div class="col-sm-3">
+                  <div id="left_button"></div>
+                </div>
+                <div class="col-sm-3">
+                  <div id="right_button"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="{{ url_for('static', filename="js/like_button.js")}}"></script>
 {% endblock %}
 
 
