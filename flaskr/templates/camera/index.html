@@ -1,24 +1,21 @@
-<html>
-  <head>
-    <title>campy</title>
-  </head>
-  <body>
-  </body>
-</html>
-
-
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Live view{% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-<img src="{{ url_for('api.get_stream', camera=camera) }}">
-<button onclick="move('left')">left</button>
-<button onclick="move('right')">right</button>
-<button onclick="move('up')">up</button>
-<button onclick="move('down')">down</button>
+<div class="container">
+    <div class="container">
+        <div class="text-center">
+            <img src="{{ url_for('api.get_stream', camera=camera) }}" class="rounded"/>
+        </div>
+    </div>
+    
+    <div class="row">
+        <button onclick="move('left')">left</button>
+        <button onclick="move('right')">right</button>
+        <button onclick="move('up')">up</button>
+        <button onclick="move('down')">down</button>
+    </div>
+</div>
+
 
 <script>
   function move(position, tripod) {

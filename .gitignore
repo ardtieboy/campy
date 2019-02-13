@@ -58,3 +58,4 @@ docs/_build/
 .vscode/
 venv/
 *sqlite
+.DS_Store

@@ -19,4 +19,11 @@ In order to run on the Raspberry Pi (without the mock)
     
 Note that this should be run as the 'pi' user, otherwise the camera is doing strange things.
     
-    
+Start this script on raspberry pi boot
+
+    sudo nano /etc/rc.local
+
+and add:
+
+    # Start the campy application
+    sudo -H -u pi /usr/bin/python /home/pi/python_stuff/campy/run.py --camera pi --$
